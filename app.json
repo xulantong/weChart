@@ -1,0 +1,12 @@
+{
+    "pages": [
+        "pages/index/index"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#bfc",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "花生云音乐"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}
