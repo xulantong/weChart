@@ -3,7 +3,7 @@
         "pages/index/index"
     ],
     "window": {
-        "navigationBarBackgroundColor": "#bfc",
+        "navigationBarBackgroundColor": "#7fc",
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "花生云音乐"
     },
