@@ -1,7 +1,7 @@
 /*轮播图*/
 .banners {
     width: 100%;
-    height: 300rpx;
+    height: 350rpx;
 }
 
 .banners image {
@@ -86,7 +86,10 @@
 }
 
 .swiperItem {
+    margin-top: 20rpx;
     width: 96%;
+    background-color: rgba(119, 255, 204, 0.1);
+    border-radius: 20rpx;
 }
 
 .swiperItem .title {

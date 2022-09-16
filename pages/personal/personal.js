@@ -1,27 +1,43 @@
-import request from "../../utils/request";
-
+let startY = 0
+let moveY = 0
+let moveDistance = 0
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        bannerList: [],
-        recommendList: [],
-        topList: [],
+        coverTransform: "translateY(0)",
+        coveTransition: ""
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: async function (options) {
-        let bannerListData = await request("/banner", {type: 2})
-        this.setData({bannerList: bannerListData.banners})
-        let recommendListData = await request("/personalized", {limit: 10})
-        this.setData({recommendList: recommendListData.result})
-        let topListData = await request("/toplist/detail", {})
-        this.setData({topList: topListData.list.slice(0, 4)})
+    onLoad(options) {
 
+    },
+    handleTouchStart(event) {
+        startY = event.touches[0].clientY
+        this.setData({
+            coveTransition: ""
+        })
+    },
+    handleTouchMove(event) {
+        moveY = event.touches[0].clientY
+        moveDistance = moveY - startY
+        if (moveDistance < 0) return
+        if (moveDistance > 80) moveDistance = 80
+        this.setData({
+            coverTransform: `translateY(${moveDistance}rpx)`,
+        })
+
+    },
+    handleTouchEnd(event) {
+        this.setData({
+            coverTransform: `translateY(0)`,
+            coveTransition: "transform 1s ease"
+        })
     },
 
     /**
