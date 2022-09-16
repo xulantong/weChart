@@ -44,19 +44,23 @@ Page({
             })
             return;
         }
-        let result = await request('/login/cellphone', {phone, password})
+        let result = await request('/login/cellphone', {phone, password, isLogin: true})
         if (result.code === 200) {
             wx.showToast({
                 title: "登陆成功"
             })
+            wx.setStorageSync("userInfo", JSON.stringify(result.profile))
+            wx.reLaunch({
+                url: "/pages/personal/personal"
+            })
         } else if (result.code === 400) {
             wx.showToast({
-                title: "登陆成功",
+                title: "手机号错误",
                 icon: "error"
             })
         } else if (result.code === 502) {
             wx.showToast({
-                title: result.message,
+                title: "密码错误",
                 icon: "error"
             })
         } else {

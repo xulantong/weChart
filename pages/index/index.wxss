@@ -100,6 +100,9 @@
 .musicItem {
     display: flex;
     align-items: center;
+    margin-right: 10rpx;
+    border-radius: 20rpx;
+    background-color: rgba(119, 255, 204, 0.3);
 }
 
 .musicItem + .musicItem {

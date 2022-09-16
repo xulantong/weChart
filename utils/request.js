@@ -9,6 +9,8 @@ export default (url, data = {}, method = 'GET') => {
             data,
             method,
             success: (res) => {
+                if (data.isLogin) {
+                }
                 resolve(res.data)
             },
             fail: (err) => {

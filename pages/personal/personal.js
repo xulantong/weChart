@@ -1,3 +1,5 @@
+import request from "../../utils/request";
+
 let startY = 0
 let moveY = 0
 let moveDistance = 0
@@ -7,14 +9,32 @@ Page({
      * 页面的初始数据
      */
     data: {
+        userInfo: {},
         coverTransform: "translateY(0)",
-        coveTransition: ""
+        coveTransition: "",
+        recentPlayList: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
+    onLoad: function (options) {
+        let userInfo = wx.getStorageSync("userInfo")
+        if (userInfo) {
+            this.setData({
+                userInfo: JSON.parse(userInfo)
+            })
+            this.getRecentPlayList(this.data.userInfo.userId)
+        }
+
+    },
+    async getRecentPlayList(uid, type = 0) {
+        let recentPlayList = await request("/user/record", {uid, type})
+        this.setData({
+            recentPlayList: recentPlayList.allData.slice(0, 10).map((item, index) => {
+                item.id = index
+            })
+        })
 
     },
     handleTouchStart(event) {
@@ -37,6 +57,11 @@ Page({
         this.setData({
             coverTransform: `translateY(0)`,
             coveTransition: "transform 1s ease"
+        })
+    },
+    toLogin() {
+        wx.navigateTo({
+            url: "/pages/login/login"
         })
     },
 
