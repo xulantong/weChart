@@ -8,7 +8,7 @@ Page({
      */
     data: {
         videoGroupList: [],
-        videoGroup: {},
+        videoList: [],
         navId: ""
     },
 
@@ -17,17 +17,31 @@ Page({
      */
     onLoad(options) {
         this.getVideoGroupList()
+
     },
     async getVideoGroupList() {
         let videoGroupListData = await request("/video/group/list")
-        this.setData({videoGroupList: videoGroupListData.data.slice(0, 14), navId: videoGroupListData.data[0].id})
-        this.getVideoGroup(this.data.navId)
+        this.setData({videoGroupList: videoGroupListData.data.slice(1, 15), navId: videoGroupListData.data[1].id})
+        this.getVideoGroup(videoGroupListData.data[1].id)
+
     },
     async getVideoGroup(id) {
-        let videoGroupData = await request("/video/group", {id})
-        // this.setData({
-        //     videoGroup:""
-        // })
+        let videoListData = await request("/video/group", {id})
+        let urlList = []
+        await Promise.all(videoListData.datas.map(async item => {
+            let result = await request('/video/url', {id: item.data.vid})
+            return result.urls[0]
+        })).then(res => {
+            urlList = res
+        })
+        this.setData({
+            videoList: videoListData.datas.map((item, index) => {
+                item.id = index
+                item.data.urlInfo = urlList[index]
+                return item
+            })
+        })
+
     },
     changeNav(event) {
         this.setData({navId: event.currentTarget.id})

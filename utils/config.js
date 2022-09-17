@@ -1,4 +1,4 @@
 export default {
     // baseUrl: "http://localhost:3000",
-    baseUrl: "http://wkcg54.natappfree.cc",
+    baseUrl: "http://qks7x8.natappfree.cc",
 }

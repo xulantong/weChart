@@ -12,4 +12,29 @@
             </view>
         </view>
     </scroll-view>
+    <scroll-view scroll-y enable-flex class="videoScroll">
+        <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
+            <view class="avatarInfo">
+                <view class="left">
+                    <image src="{{item.data.creator.avatarUrl}}"></image>
+                    <view>{{item.data.creator.nickname}}</view>
+                </view>
+                <view class="right">
+                    <view class="item">
+                        <text class="iconfont icon-aixin"></text>
+                        <text class="number">{{item.data.praisedCount}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="iconfont icon-pinglun"></text>
+                        <text class="number">{{item.data.commentCount}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="iconfont icon-androidgengduo"></text>
+                    </view>
+                </view>
+            </view>
+            <video src="{{item.data.urlInfo.url}}"></video>
+            <view class="footer">{{item.data.title}}</view>
+        </view>
+    </scroll-view>
 </view>
