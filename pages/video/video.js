@@ -9,6 +9,7 @@ Page({
     data: {
         videoGroupList: [],
         videoList: [],
+        isTriggered: false,
         navId: ""
     },
 
@@ -39,12 +40,25 @@ Page({
                 item.id = index
                 item.data.urlInfo = urlList[index]
                 return item
-            })
+            }),
+            isTriggered: false
         })
+        wx.hideLoading()
 
     },
     changeNav(event) {
-        this.setData({navId: event.currentTarget.id})
+        this.setData({navId: event.currentTarget.id, videoList: []})
+        wx.showLoading({
+            title: "加载中"
+        })
+        this.getVideoGroup(this.data.navId)
+    },
+    handlePlay(event) {
+        this?.vId !== event.currentTarget.id && this.videoContext && this.videoContext.stop()
+        this.vId = event.currentTarget.id
+        this.videoContext = wx.createVideoContext(this.vId)
+    },
+    handleScrollRefresh() {
         this.getVideoGroup(this.data.navId)
     },
 
@@ -93,7 +107,15 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage() {
-
+    onShareAppMessage({from, target}) {
+        if (from === 'button') {
+            console.log(target)
+            let {title, path} = target.dataset
+            return {
+                title,
+                path,
+                imageUrl:'/static/images/avatar.png'
+            }
+        }
     }
 })

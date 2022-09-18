@@ -5,14 +5,22 @@
         <image src="/static/images/logo.png"></image>
     </view>
 
-    <scroll-view scroll-x enable-flex class="navScroll">
-        <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+    <scroll-view scroll-x scroll-into-view="{{'scroll'+navId}}" scroll-with-animation enable-flex class="navScroll">
+        <view class="navItem" id="{{'scroll'+item.id}}" wx:for="{{videoGroupList}}" wx:key="id">
             <view class="navContent {{item.id == navId?'active':''}}" bind:tap="changeNav" id="{{item.id}}">
                 {{item.name}}
             </view>
         </view>
     </scroll-view>
-    <scroll-view scroll-y enable-flex class="videoScroll">
+    <scroll-view
+            scroll-y
+            refresher-enabled
+            bindrefresherrefresh="handleScrollRefresh"
+            enable-flex
+            class="videoScroll"
+            refresher-background="#7fc"
+            refresher-triggered="{{isTriggered}}"
+    >
         <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
             <view class="avatarInfo">
                 <view class="left">
@@ -28,12 +36,13 @@
                         <text class="iconfont icon-pinglun"></text>
                         <text class="number">{{item.data.commentCount}}</text>
                     </view>
-                    <view class="item">
+                    <button size="mini" data-title="{{item.data.title}}" data-path="/pages/video/video" open-type="share" class="item">
                         <text class="iconfont icon-androidgengduo"></text>
-                    </view>
+                    </button>
                 </view>
             </view>
-            <video src="{{item.data.urlInfo.url}}"></video>
+            <video bindplay="handlePlay" object-fit="cover" poster="{{item.data.coverUrl}}"
+                   id="{{item.data.urlInfo.id}}" src="{{item.data.urlInfo.url}}"></video>
             <view class="footer">{{item.data.title}}</view>
         </view>
     </scroll-view>

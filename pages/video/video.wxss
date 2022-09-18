@@ -1,5 +1,8 @@
 .videoContainer {
     padding: 10rpx;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
 }
 
 .videoContainer .header {
@@ -47,6 +50,8 @@
 
 .videoScroll {
     margin-top: 10rpx;
+    height: 0;
+    flex: 1;
 }
 
 .videoItem {
@@ -69,6 +74,9 @@
     align-items: center;
 }
 .item +.item{
+    width: 50rpx;
+    padding: 0;
+    background-color: #fff;
     margin-left: 15rpx;
 }
 .number{
