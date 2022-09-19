@@ -1,0 +1,27 @@
+<view class="recommendSongContainer">
+    <view class="header">
+        <image src="/static/images/recommend/recommendSong.jpg"></image>
+        <view class="date">
+            <text> {{recommendReason}} </text>
+        </view>
+    </view>
+    <view class="listContainer">
+        <view class="listHeader">
+            <view class="left">播放全部<text class="iconfont icon-bofang"></text>
+            </view>
+            <!--            <view class="right">多选</view>-->
+        </view>
+        <scroll-view scroll-y class="musicScroll" enable-flex>
+            <view class="musicItem" bindtap="toSongDetail" data-id="{{item.id}}" wx:for="{{recommendList}}" wx:key="id">
+                <view class="left">
+                    <image src="{{item.al.picUrl}}"></image>
+                    <view class="musicInfo">
+                        <text class="musicName">{{item.name}}</text>
+                        <text class="author">{{item.ar[0].name}}</text>
+                    </view>
+                </view>
+                <view class="right iconfont icon-androidgengduo"></view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

@@ -1,0 +1,99 @@
+.recommendSongContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendSongContainer .header {
+    position: relative;
+    width: 100%;
+    height: 300rpx;
+}
+
+.recommendSongContainer .header image {
+    width: 100%;
+    height: 100%;
+}
+
+.recommendSongContainer .header .date {
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    width: 100%;
+    transform: translateY(-8%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36rpx;
+}
+
+.listContainer {
+    padding: 10rpx 0 20rpx 20rpx;
+    height: 0;
+    flex: 1;
+    border-radius: 20rpx;
+    position: relative;
+    top: -20rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.listContainer .listHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+}
+
+.listHeader .left {
+    border: 1rpx solid #7fc;
+    padding: 5rpx 20rpx;
+    border-radius: 20rpx;
+    font-size: 24rpx;
+}
+
+.listHeader .left .iconfont {
+    color: #7fc;
+    margin-left: 20rpx;
+}
+.musicScroll{
+    height: 0;
+    flex: 1;
+}
+
+.musicItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20rpx;
+}
+
+.musicItem + .musicItem {
+    margin-top: 20rpx;
+}
+
+.musicItem .left {
+    display: flex;
+}
+
+.musicItem .left image {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 10rpx;
+}
+
+.musicInfo {
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.musicInfo text {
+    font-size: 26rpx;
+    max-width: 400rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

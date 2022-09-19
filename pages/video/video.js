@@ -17,8 +17,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getVideoGroupList()
-
+        if (wx.getStorageSync('userInfo')) {
+            this.getVideoGroupList()
+        } else {
+            wx.showToast({
+                title: "请先登录",
+                icon: "error",
+                success: () => {
+                    wx.reLaunch({
+                        url: "/pages/login/login"
+                    })
+                }
+            })
+        }
     },
     async getVideoGroupList() {
         let videoGroupListData = await request("/video/group/list")
@@ -114,7 +125,7 @@ Page({
             return {
                 title,
                 path,
-                imageUrl:'/static/images/avatar.png'
+                imageUrl: '/static/images/avatar.png'
             }
         }
     }
