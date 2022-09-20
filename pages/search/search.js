@@ -8,7 +8,8 @@ Page({
      */
     data: {
         defaultPlaceholder: "",
-        hotList: []
+        hotList: [],
+        searchContent: ""
     },
 
     /**
@@ -32,6 +33,29 @@ Page({
                 item.id = index
                 return item
             })
+        })
+    },
+    handleInput(event) {
+        this.setData({
+            searchContent: event.detail.value
+        })
+        this.getSearchList()
+    },
+    debounce(fn, delay = 3000) {
+        let timer
+        return () => {
+            if (timer) {
+                clearTimeout(timer)
+            } else {
+                timer = setTimeout(() => {
+                    fn()
+                }, 1000)
+            }
+        }
+    },
+    async getSearchList() {
+        this.debounce(async () => {
+            let searchListData = await request("/cloudsearch", {keywords: this.data.searchContent, limit: 20})
         })
     },
 
