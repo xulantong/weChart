@@ -1,6 +1,8 @@
 .searchContainer {
     height: 100%;
     padding: 20rpx;
+    display: flex;
+    flex-direction: column;
 }
 
 .searchContainer .header {
@@ -13,10 +15,61 @@
 .header .searchInput {
     width: 0;
     flex: 1;
-    background-color: #7fc;
+    border-radius: 10rpx;
+    display: flex;
+    padding: 5rpx;
+    align-items: center;
+    background-color: #eee;
+}
+
+.searchInput .search {
+    margin-right: 20rpx;
+}
+
+.searchInput .placeholder {
+    font-size: 26rpx;
 }
 
 .header .cancel {
-    width: 100rpx;
-    text-align: right;
+    width: 80rpx;
+    text-align: center;
+    font-size: 28rpx;
+}
+
+.hotContainer {
+    height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotContainer .title {
+    font-size: 28rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.hotList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 26rpx;
+    border-top: 1rpx solid #eee;
+}
+
+.hotItem {
+    width: 50%;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+
+}
+
+.hotItem .name {
+    margin: 0 10rpx;
+}
+
+.hotItem image {
+    width: 35rpx;
+    height: 20rpx;
 }

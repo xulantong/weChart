@@ -1,9 +1,20 @@
 <view class="searchContainer">
     <view class="header">
         <view class="searchInput">
-            <input type="text" placeholder="搜索歌名"></input>
+            <text class="iconfont icon-sousuo search"></text>
+            <input type="text" placeholder="{{defaultPlaceholder}}" placeholder-class="placeholder"></input>
         </view>
         <text class="cancel">取消</text>
+    </view>
+    <view class="hotContainer">
+        <view class="title">热搜榜</view>
+        <view class="hotList">
+            <view class="hotItem" wx:for="{{hotList}}" wx:key="id">
+                <text class="order">{{index + 1}}</text>
+                <text class="name">{{item.searchWord}}</text>
+                <image src="{{item.iconUrl}}"></image>
+            </view>
+        </view>
     </view>
 
 </view>

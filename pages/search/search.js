@@ -1,18 +1,38 @@
 // pages/search/search.js
+import request from "../../utils/request";
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        defaultPlaceholder: "",
+        hotList: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        this.getDefaultPlaceholder()
+        this.getHotList()
 
+    },
+    async getDefaultPlaceholder() {
+        let defaultPlaceholder = await request("/search/default")
+        this.setData({
+            defaultPlaceholder: defaultPlaceholder.data.showKeyword
+        })
+    },
+    async getHotList() {
+        let hotListData = await request("/search/hot/detail")
+        this.setData({
+            hotList: hotListData.data.map((item, index) => {
+                item.id = index
+                return item
+            })
+        })
     },
 
     /**
