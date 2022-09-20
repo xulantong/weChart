@@ -1,6 +1,30 @@
 // pages/search/search.js
 import request from "../../utils/request";
 
+function debounce(fn, delay = 3000) {
+    let timer = null
+    return function () {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+            fn.apply(this, arguments);
+        }, delay);
+
+    }
+}
+
+function throttle(fn) {
+    let canRun = true; // 通过闭包保存一个标记
+    return function () {
+        if (!canRun) return;
+        canRun = false;
+        setTimeout(() => {
+            fn.apply(this, arguments);
+            canRun = true;
+        }, 5000);
+    };
+}
+
+
 Page({
 
     /**
@@ -9,7 +33,8 @@ Page({
     data: {
         defaultPlaceholder: "",
         hotList: [],
-        searchContent: ""
+        searchContent: "",
+        searchList: []
     },
 
     /**
@@ -35,27 +60,16 @@ Page({
             })
         })
     },
-    handleInput(event) {
+    handleInput: debounce(function (event) {
         this.setData({
             searchContent: event.detail.value
         })
         this.getSearchList()
-    },
-    debounce(fn, delay = 3000) {
-        let timer
-        return () => {
-            if (timer) {
-                clearTimeout(timer)
-            } else {
-                timer = setTimeout(() => {
-                    fn()
-                }, 1000)
-            }
-        }
-    },
+    }, 5000),
     async getSearchList() {
-        this.debounce(async () => {
-            let searchListData = await request("/cloudsearch", {keywords: this.data.searchContent, limit: 20})
+        let searchListData = await request("/cloudsearch", {keywords: this.data.searchContent, limit: 20})
+        this.setData({
+            searchList: searchListData.result.songs
         })
     },
 
