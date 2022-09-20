@@ -1,5 +1,6 @@
 // pages/recommendSong/recommendSong.js
 import request from "../../utils/request";
+import PubSub from "pubsub-js";
 
 Page({
 
@@ -29,11 +30,24 @@ Page({
                     })
                 }
             })
-
         }
+
         this.setData({
             day: new Date().getDate(),
             month: new Date().getMonth() + 1
+        })
+        PubSub.subscribe("switchType", (msg, {type, id}) => {
+            let currentIndex = this.data.recommendList.findIndex(item => item.id === id)
+            if (type === "pre" && currentIndex > 0) {
+                let musicId = this.data.recommendList[currentIndex - 1].id
+                PubSub.publish("switchTypeCallback", musicId)
+            } else {
+                if (currentIndex < this.data.recommendList.length) {
+                    let musicId = this.data.recommendList[currentIndex + 1].id
+                    PubSub.publish("switchTypeCallback", musicId)
+                }
+
+            }
         })
     },
     async getRecommendList() {
@@ -74,7 +88,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
+        PubSub.unsubscribe("switchType")
     },
 
     /**

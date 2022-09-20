@@ -1,5 +1,6 @@
 import request from "../../utils/request";
-import Pubsub from "pubsub-js"
+import PubSub from "pubsub-js"
+import dayjs from "dayjs";
 
 const instance = getApp()
 
@@ -12,7 +13,10 @@ Page({
         isPlay: false,
         ids: "",
         songDetail: {},
-        songUrl: ""
+        songUrl: "",
+        currentTime: "00:00",
+        durationTime: "00:00",
+        currentWidth: 0
     },
 
     /**
@@ -41,6 +45,23 @@ Page({
         this.backgroundAudioManager.onStop(() => {
             this.handldMusicStateChange(false)
         })
+        PubSub.subscribe("switchTypeCallback", async (msg, id) => {
+            this.setData({ids: id})
+            await this.getMusicDetail(id)
+            await this.handleMusicControl(true)
+        })
+
+        this.backgroundAudioManager.onTimeUpdate(() => {
+            let {currentTime, duration} = this.backgroundAudioManager
+            this.setData({
+                currentTime: dayjs(currentTime * 1000).format("mm:ss"),
+                currentWidth: (currentTime && duration) ? ((currentTime / duration)) : 0
+            })
+        })
+        this.backgroundAudioManager.onEnded(() => {
+            PubSub.publish("switchType", {type: "next", id: this.data.ids})
+        })
+
     },
     handldMusicStateChange(isPlay) {
         this.setData({
@@ -51,9 +72,10 @@ Page({
     async getMusicDetail(ids) {
         let songDetail = await request("/song/detail", {ids})
         let songUrl = await request("/song/url", {id: this.data.ids})
-
+        let durationTime = dayjs(songDetail.songs[0].dt).format("mm:ss")
         this.setData({
             songDetail: songDetail.songs[0],
+            durationTime,
             songUrl
         })
         wx.setNavigationBarTitle({
@@ -74,11 +96,7 @@ Page({
 
     handleSwitch(event) {
         const {type} = event.currentTarget.dataset
-        if(type === 'pre'){
-        }else {
-
-        }
-
+        PubSub.publish("switchType", {type, id: this.data.ids})
     },
 
     /**
@@ -106,7 +124,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
+        PubSub.unsubscribe("switchTypeCallback")
     },
 
     /**

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/xulantong/weChart#readme",
   "dependencies": {
-    "@vant/weapp": "^1.10.5"
+    "@vant/weapp": "^1.10.5",
+    "dayjs": "^1.11.5",
+    "pubsub-js": "^1.9.4"
   }
 }

@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/pages/login/login.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/personal/personal.wxss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/recommendSong/recommendSong.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/search/search.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/songDetail/songDetail.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/video/video.json" charset="UTF-8" />
   </component>

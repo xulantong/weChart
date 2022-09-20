@@ -61,7 +61,8 @@
     position: absolute;
     top: -40rpx;
 }
-.discRotate{
+
+.discRotate {
     animation: musicImage linear 5s 0.5s infinite;
 }
 
@@ -73,7 +74,8 @@
         transform: rotateZ(1turn);
     }
 }
-.footerContainer{
+
+.footerContainer {
     display: flex;
     width: 100%;
     align-items: center;
@@ -84,6 +86,47 @@
     border-top: 1rpx solid #fff;
     color: #fff;
 }
-.footerContainer .iconfont{
+
+.footerContainer .iconfont {
     font-size: 55rpx;
+}
+
+.progressControl {
+    box-sizing: content-box;
+    position: absolute;
+    width: 660rpx;
+    bottom: 250rpx;
+    height: 80rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.progressControl .progress {
+    height: 4rpx;
+    margin: 0 20rpx;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 0;
+    flex: 1;
+    position: relative;
+}
+
+.currentPro {
+    position: absolute;
+    top: 0;
+    width: 20%;
+    left: 0;
+    height: 4rpx;
+    background-color: #7fc;
+}
+
+.currentPro .circle {
+    position: absolute;
+    top: -4rpx;
+    right: -12rpx;
+    height: 12rpx;
+    width: 12rpx;
+    border-radius: 50%;
+    background-color: #fff;
 }

@@ -41,7 +41,7 @@
                     </button>
                 </view>
             </view>
-            <video bindplay="handlePlay" object-fit="cover" poster="{{item.data.coverUrl}}"
+            <video bindplay="handlePlay" object-fit="fill" poster="{{item.data.coverUrl}}"
                    id="{{item.data.urlInfo.id}}" src="{{item.data.urlInfo.url}}"></video>
             <view class="footer">{{item.data.title}}</view>
         </view>

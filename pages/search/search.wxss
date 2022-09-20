@@ -1,0 +1,22 @@
+.searchContainer {
+    height: 100%;
+    padding: 20rpx;
+}
+
+.searchContainer .header {
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .searchInput {
+    width: 0;
+    flex: 1;
+    background-color: #7fc;
+}
+
+.header .cancel {
+    width: 100rpx;
+    text-align: right;
+}

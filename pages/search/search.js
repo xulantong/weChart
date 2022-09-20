@@ -1,32 +1,18 @@
-import request from "../../utils/request";
-
+// pages/search/search.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        bannerList: [],
-        recommendList: [],
-        topList: [],
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: async function (options) {
-        let bannerListData = await request("/banner", {type: 2})
-        this.setData({bannerList: bannerListData.banners})
-        let recommendListData = await request("/personalized", {limit: 10})
-        this.setData({recommendList: recommendListData.result})
-        let topListData = await request("/toplist/detail", {})
-        this.setData({topList: topListData.list.slice(0, 4)})
+    onLoad(options) {
 
-    },
-    toRecommend() {
-        wx.navigateTo({
-            url: "/pages/recommendSong/recommendSong"
-        })
     },
 
     /**

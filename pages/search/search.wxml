@@ -1,0 +1,9 @@
+<view class="searchContainer">
+    <view class="header">
+        <view class="searchInput">
+            <input type="text" placeholder="搜索歌名"></input>
+        </view>
+        <text class="cancel">取消</text>
+    </view>
+
+</view>

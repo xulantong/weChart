@@ -6,7 +6,15 @@
         <image class="disc" src="/static/images/song/disc.png"></image>
         <image class="musicImage {{isPlay?'discRotate':''}}" src="{{songDetail.al.picUrl}}"></image>
     </view>
-    <audio></audio>
+    <view class="progressControl">
+        <view class="time">{{currentTime}}</view>
+        <view class="progress">
+            <view class="currentPro" style="width:{{currentWidth*100+'%'}}">
+                <view class="circle"></view>
+            </view>
+        </view>
+        <view class="time">{{durationTime}}</view>
+    </view>
     <view class="footerContainer">
         <text class="iconfont icon-suiji1"></text>
         <text class="iconfont icon-shangyishou" bindtap="handleSwitch" data-type="pre"></text>
