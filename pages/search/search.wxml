@@ -2,19 +2,53 @@
     <view class="header">
         <view class="searchInput">
             <text class="iconfont icon-sousuo search"></text>
-            <input type="text" bindinput="handleInput" placeholder="{{defaultPlaceholder}}" placeholder-class="placeholder"></input>
+            <input type="text" bindinput="handleInput" placeholder="{{defaultPlaceholder}}"
+                   placeholder-class="placeholder"></input>
         </view>
         <text class="cancel">取消</text>
     </view>
-    <view class="hotContainer">
-        <view class="title">热搜榜</view>
-        <view class="hotList">
-            <view class="hotItem" wx:for="{{hotList}}" wx:key="id">
-                <text class="order">{{index + 1}}</text>
-                <text class="name">{{item.searchWord}}</text>
-                <image src="{{item.iconUrl}}"></image>
+    <block wx:if="{{searchContent}}">
+        <view class="searchResult">
+            <view class="keyWord">搜索内容： {{searchContent}}</view>
+            <scroll-view enable-flex scroll-y class="searchList">
+                <view class="searchItem" wx:for="{{searchList}}" wx:key="id">
+                    <text class="iconfont icon-sousuo"></text>
+                    <text>{{item.name}}</text>
+                </view>
+            </scroll-view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="history">
+            <view class="title">搜索历史</view>
+            <view class="historyList">
+                <view class="historyItem">
+                    exhdsakhdkjsahdkj
+                </view>
+                <view class="historyItem">
+                    exexhdsakhdkjsahdkj
+                </view>
+                <view class="historyItem">
+                    exexhdsakhdkjsahdkj
+                </view>
+                <view class="historyItem">
+                    exexhdsakhdkjsahdkj
+                </view>
+                <view class="delete iconfont icon-shanchu"></view>
+            </view>
+
+        </view>
+        <view class="hotContainer">
+            <view class="title">热搜榜</view>
+            <view class="hotList">
+                <view class="hotItem" wx:for="{{hotList}}" wx:key="id">
+                    <text class="order">{{index + 1}}</text>
+                    <text class="name">{{item.searchWord}}</text>
+                    <image src="{{item.iconUrl}}"></image>
+                </view>
             </view>
         </view>
-    </view>
+    </block>
+
 
 </view>

@@ -12,15 +12,15 @@ function debounce(fn, delay = 3000) {
     }
 }
 
-function throttle(fn) {
-    let canRun = true; // 通过闭包保存一个标记
+function throttle(fn, wait) {
+    let timer = null
     return function () {
-        if (!canRun) return;
-        canRun = false;
-        setTimeout(() => {
+        if (timer) return;
+        timer = setTimeout(() => {
             fn.apply(this, arguments);
-            canRun = true;
-        }, 5000);
+            clearTimeout(timer)
+            timer = null
+        }, wait);
     };
 }
 
@@ -65,9 +65,15 @@ Page({
             searchContent: event.detail.value
         })
         this.getSearchList()
-    }, 5000),
+    }, 2000),
     async getSearchList() {
-        let searchListData = await request("/cloudsearch", {keywords: this.data.searchContent, limit: 20})
+        if (!this.data.searchContent) {
+            this.setData({
+                searchList: []
+            })
+            return
+        }
+        let searchListData = await request("/cloudsearch", {keywords: this.data.searchContent.trim(), limit: 20})
         this.setData({
             searchList: searchListData.result.songs
         })

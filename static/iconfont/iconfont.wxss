@@ -1,8 +1,8 @@
 @font-face {
     font-family: "iconfont"; /* Project id 3649689 */
-    src: url('//at.alicdn.com/t/c/font_3649689_m33e3irlywj.woff2?t=1663661386725') format('woff2'),
-    url('//at.alicdn.com/t/c/font_3649689_m33e3irlywj.woff?t=1663661386725') format('woff'),
-    url('//at.alicdn.com/t/c/font_3649689_m33e3irlywj.ttf?t=1663661386725') format('truetype');
+    src: url('//at.alicdn.com/t/c/font_3649689_bmfdrtlc8ea.woff2?t=1663730024921') format('woff2'),
+    url('//at.alicdn.com/t/c/font_3649689_bmfdrtlc8ea.woff?t=1663730024921') format('woff'),
+    url('//at.alicdn.com/t/c/font_3649689_bmfdrtlc8ea.ttf?t=1663730024921') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shanchu:before {
+    content: "\e74b";
 }
 
 .icon-sousuo:before {
