@@ -72,6 +72,11 @@ Page({
     handleScrollRefresh() {
         this.getVideoGroup(this.data.navId)
     },
+    handleClickSearch(){
+      wx.navigateTo({
+          url:"/pages/search/search"
+      })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

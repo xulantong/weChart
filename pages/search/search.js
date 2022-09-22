@@ -34,7 +34,8 @@ Page({
         defaultPlaceholder: "",
         hotList: [],
         searchContent: "",
-        searchList: []
+        searchList: [],
+        historyList: []
     },
 
     /**
@@ -43,6 +44,10 @@ Page({
     onLoad(options) {
         this.getDefaultPlaceholder()
         this.getHotList()
+        let historyList = wx.getStorageSync('historyList')
+        if (historyList.length) {
+            this.setData({historyList})
+        }
 
     },
     async getDefaultPlaceholder() {
@@ -74,9 +79,14 @@ Page({
             return
         }
         let searchListData = await request("/cloudsearch", {keywords: this.data.searchContent.trim(), limit: 20})
+        let {historyList} = this.data
+        historyList.unshift(this.data.searchContent)
         this.setData({
-            searchList: searchListData.result.songs
+            searchList: searchListData.result.songs,
+            historyList:[...new Set(historyList)]
         })
+        wx.setStorageSync('historyList', this.data.historyList)
+
     },
 
     /**

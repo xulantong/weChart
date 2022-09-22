@@ -19,20 +19,11 @@
         </view>
     </block>
     <block wx:else>
-        <view class="history">
+        <view class="history" wx:if="{{historyList.length}}">
             <view class="title">搜索历史</view>
             <view class="historyList">
-                <view class="historyItem">
-                    exhdsakhdkjsahdkj
-                </view>
-                <view class="historyItem">
-                    exexhdsakhdkjsahdkj
-                </view>
-                <view class="historyItem">
-                    exexhdsakhdkjsahdkj
-                </view>
-                <view class="historyItem">
-                    exexhdsakhdkjsahdkj
+                <view class="historyItem" wx:for="{{historyList}}" wx:key="index">
+                    {{item}}
                 </view>
                 <view class="delete iconfont icon-shanchu"></view>
             </view>
