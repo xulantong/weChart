@@ -36,7 +36,7 @@
                         <text class="iconfont icon-pinglun"></text>
                         <text class="number">{{item.data.commentCount}}</text>
                     </view>
-                    <button size="mini" data-title="{{item.data.title}}" data-path="/pages/video/video" open-type="share" class="item">
+                    <button size="mini" plain data-title="{{item.data.title}}" data-path="/pages/video/video" open-type="share" class="item">
                         <text class="iconfont icon-androidgengduo"></text>
                     </button>
                 </view>

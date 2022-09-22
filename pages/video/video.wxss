@@ -76,6 +76,7 @@
 .item +.item{
     width: 50rpx;
     padding: 0;
+    border: none;
     background-color: #fff;
     margin-left: 15rpx;
 }
