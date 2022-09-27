@@ -1,3 +1,4 @@
+// pages/getInfo/getInfo.js
 import request from "../../utils/request";
 
 Page({
@@ -6,31 +7,19 @@ Page({
      * 页面的初始数据
      */
     data: {
-        bannerList: [],
-        recommendList: [],
-        topList: [],
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: async function (options) {
-        let bannerListData = await request("/banner", {type: 2})
-        this.setData({bannerList: bannerListData.banners})
-        let recommendListData = await request("/personalized", {limit: 10})
-        this.setData({recommendList: recommendListData.result})
-        let topListData = await request("/toplist/detail", {})
-        this.setData({topList: topListData.list.slice(0, 4)})
-
-    },
-    toRecommend() {
-        wx.navigateTo({
-            url: "/pages/recommendSong/recommendSong"
-        })
-    },
-    toGetInfo(){
-        wx.navigateTo({
-            url: "/pages/getInfo/getInfo"
+    onLoad(options) {
+        let code
+        wx.login({
+            success: (res) => {
+                code = res.code
+                request("/getInfo",{code},{},"POST")
+            }
         })
     },
 

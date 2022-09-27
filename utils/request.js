@@ -14,6 +14,7 @@ export default (url, data = {}, config, method = 'GET') => {
                 if (data.isLogin) {
                     wx.setStorageSync("cookies", res.cookies.find(item => item.includes("MUSIC_U")))
                 }
+                // console.log(res)
                 resolve(res.data)
             },
             fail: (err) => {

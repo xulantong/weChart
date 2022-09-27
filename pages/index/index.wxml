@@ -11,7 +11,7 @@
             <text class="iconfont icon-meirituijian"></text>
             <text>每日推荐</text>
         </view>
-        <view class="navItem">
+        <view class="navItem" bindtap="toGetInfo">
             <text class="iconfont icon-gedan"></text>
             <text>歌单</text>
         </view>

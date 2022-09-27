@@ -1,42 +1,43 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/search/search",
-    "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail",
-    "pages/video/video",
-    "pages/personal/personal",
-    "pages/login/login"
-  ],
-  "window": {
-    "navigationBarBackgroundColor": "#7fc",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "花生云音乐"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "主页",
-        "iconPath": "/static/images/tabs/home.png",
-        "selectedIconPath": "/static/images/tabs/home-selected.png"
-      },
-      {
-        "pagePath": "pages/video/video",
-        "text": "视频",
-        "iconPath": "/static/images/tabs/video.png",
-        "selectedIconPath": "/static/images/tabs/video-selected.png"
-      },
-      {
-        "pagePath": "pages/personal/personal",
-        "text": "个人中心",
-        "iconPath": "/static/images/tabs/personal.png",
-        "selectedIconPath": "/static/images/tabs/personal-selected.png"
-      }
-    ]
-  },
-  "requiredBackgroundModes": [
-    "audio"
-  ],
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/getInfo/getInfo",
+        "pages/index/index",
+        "pages/search/search",
+        "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail",
+        "pages/video/video",
+        "pages/personal/personal",
+        "pages/login/login"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#7fc",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "花生云音乐"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "主页",
+                "iconPath": "/static/images/tabs/home.png",
+                "selectedIconPath": "/static/images/tabs/home-selected.png"
+            },
+            {
+                "pagePath": "pages/video/video",
+                "text": "视频",
+                "iconPath": "/static/images/tabs/video.png",
+                "selectedIconPath": "/static/images/tabs/video-selected.png"
+            },
+            {
+                "pagePath": "pages/personal/personal",
+                "text": "个人中心",
+                "iconPath": "/static/images/tabs/personal.png",
+                "selectedIconPath": "/static/images/tabs/personal-selected.png"
+            }
+        ]
+    },
+    "requiredBackgroundModes": [
+        "audio"
+    ],
+    "sitemapLocation": "sitemap.json"
 }
